@@ -15,7 +15,27 @@
 </head>
 
 <body>
+    <script>var exports = {};</script>
+    <script src="./parse.js"></script>
+    <script src="./gameLogic.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script src="./index.js" defer></script>
+    <div class="leftBox">
+        <div class="wordsPlayed">
+            <span class="wordsTitle">Разыгранные слова:</span>
+            <ul id="wordsPlayed" class="listOfWords">
+            </ul>
+        </div>
+        <img src="tasche.png" alt="sack" class="sackPic" id="sackPic">
+    </div>
+    <div class="rightBox" id="rightBox">
+    </div>
+    <div class="sack" id="sack">
+        <img src="cross.svg" alt="cross" class="sackCross" id="sackCross">
+        <div class="sackLetters" id="sackLetters"> </div>
+        <div class="sackLettersForChange" id="sackLettersForChange"> </div>
+        <button class="sackButton" id="sackButton">Поменять букву и пропустить ход</button>
+    </div>
 </body>
 
 </html>

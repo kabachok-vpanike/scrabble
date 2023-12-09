@@ -1,0 +1,528 @@
+.emptyCell {
+    width: 40px;
+    height: 40px;
+    user-select: none;
+    position: relative;
+    border-radius: 0px;
+    line-height: 32px;
+    text-align: center;
+}
+
+.colorWithin {
+    z-index: -1;
+    user-select: none;
+    background-color: #EDF1D6;
+    border-radius: 8px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 75%;
+    height: 75%;
+    transform: translate(-50%, -50%);
+}
+
+.cell2L {
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    width: 75%;
+    height: 75%;
+    user-select: none;
+    position: relative;
+    font-size: 20px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 8px;
+    font-family: "Manrope";
+    font-weight: 800;
+    background-color: #9DC08B;
+    color: #1B531A;
+    transform: translate(-50%, -50%);
+}
+
+.cell2W {
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    width: 75%;
+    height: 75%;
+    user-select: none;
+    position: relative;
+    font-size: 20px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 8px;
+    font-family: "Manrope";
+    font-weight: 800;
+    background-color: #609966;
+    color: #ABE5A9;
+    transform: translate(-50%, -50%);
+}
+
+.cell3L {
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    width: 75%;
+    height: 75%;
+    user-select: none;
+    position: relative;
+    font-size: 20px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 8px;
+    font-family: "Manrope";
+    font-weight: 800;
+    background-color: #53624E;
+    color: #ABE5A9;
+    transform: translate(-50%, -50%);
+}
+
+.cell3W {
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    width: 75%;
+    height: 75%;
+    user-select: none;
+    position: relative;
+    font-size: 20px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 8px;
+    font-family: "Manrope";
+    font-weight: 800;
+    background-color: #40513B;
+    color: #ABE5A9;
+    transform: translate(-50%, -50%);
+}
+
+.cellCenter {
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    width: 75%;
+    height: 75%;
+    user-select: none;
+    position: relative;
+    font-size: 20px;
+    line-height: 32px;
+    text-align: center;
+    border-radius: 8px;
+    font-family: "Manrope";
+    font-weight: 800;
+    background-color: #1B531A;
+    color: #ABE5A9;
+    transform: translate(-50%, -50%);
+}
+
+.field {
+    display: grid;
+    grid-template-columns: repeat(15, 40px);
+    grid-template-rows: repeat(15, 40px);
+    column-gap: 0px;
+    row-gap: 0px;
+}
+
+.background {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.tile {
+    user-select: none;
+    top: 0;
+    left: 0;
+    font-family: "Manrope";
+    font-weight: 900;
+    text-align: center;
+    background-color: #EDF1D6;
+    border-radius: 8px;
+    cursor: grab;
+    margin: 2px 6px;
+    box-shadow: -4px 4px 0px 2px #1B531A;
+    transform: translateY(-4px);
+    color: #1B531A;
+    font-size: 18px;
+}
+
+.letters {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 10px;
+    width: 100%;
+    height: 56px;
+    align-items: center;
+
+}
+
+.over {
+    border: 4px solid #1B531A;
+    border-radius: 10px;
+}
+
+.cellWithTile {
+    box-shadow: -4px 4px 0px 2px #1B531A;
+    height: 32px;
+    width: 32px;
+    transform: translateX(4px);
+}
+
+.bottomBar {
+    width: 100%;
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.submitButton {
+    border: none;
+    user-select: none;
+    font-family: "Manrope";
+    font-weight: 600;
+    min-width: 120px;
+    height: 44px;
+    background-color: #40513B;
+    color: #ABE5A9;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 8px;
+    box-shadow: -6px 6px 0px 0px #10310f;
+    transition: 0.2s;
+    transition-timing-function: ease-out;
+}
+
+.skipButton {
+    border: none;
+    user-select: none;
+    font-family: "Manrope";
+    font-weight: 600;
+    min-width: 120px;
+    height: 44px;
+    background-color: #ABE5A9;
+    color: #40513B;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 8px;
+    box-shadow: -6px 6px 0px 0px #1B531A;
+    transition: 0.2s;
+    transition-timing-function: ease-out;
+}
+
+.skipButton:active {
+    transform: scale(1.1);
+    transition: transform 0.05s;
+    transition-timing-function: ease-in;
+}
+
+.submitButton:active {
+    transform: scale(1.1);
+    transition: 0.05s;
+    transition-timing-function: ease-in;
+}
+
+html {
+    background-color: #B0CCA2
+}
+
+.fieldTile {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+}
+
+.availableTile {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 22px;
+}
+
+.letterScoreDiv {
+    position: absolute;
+    right: 0;
+    font-size: 14px;
+    background-color: yellow;
+}
+
+.letterScore {
+    pointer-events: none;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 16px;
+    margin-right: 4px;
+    height: 10px;
+    font-size: 10px;
+}
+
+.letterScoreSmaller {
+    pointer-events: none;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 12px;
+    margin-right: 2px;
+    height: 10px;
+    font-size: 8px;
+}
+
+.sackPic {
+    width: 150px;
+    height: 150px;
+    transition: 0.2s ease-out;
+}
+
+.sackPic:hover {
+    transform: scale(1.2);
+    transition: 0.2s;
+}
+
+.wordsPlayed {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 65%;
+    border: 4px solid #1B531A;
+    border-radius: 16px;
+    background-color: #EDF1D6;
+}
+
+.leftBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    width: 20%;
+    height: 90%;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.rightBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    position: absolute;
+    width: 20%;
+    height: 90%;
+    top: 50%;
+    right: 0%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.userCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    height: 18%;
+    background-color: #EDF1D6;
+    border: 4px solid #1B531A;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.upperCard {
+    font-weight: 500;
+    font-family: "Manrope";
+    display: flex;
+    height: 50%;
+    width: 100%;
+    align-items: center;
+    gap: 12px;
+    font-size: 20px;
+
+}
+
+.userPic {
+    height: 75%;
+    padding-left: 8px;
+    filter: invert(24%) sepia(24%) saturate(1200%) hue-rotate(70deg) brightness(101%) contrast(98%);
+}
+
+.bottomCard {
+    color: #1B531A;
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    height: 100%;
+    align-items: center;
+}
+
+.scoreCard {
+    color: #1B531A;
+    font-family: "Manrope";
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.timeCard {
+    color: #1B531A;
+    font-family: "Manrope";
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.lineCard {
+    height: 4px;
+    width: 90%;
+    background-color: #1B531A;
+}
+
+.nameCard {
+    color: #1B531A;
+}
+
+.wordsTitle {
+    font-size: 20px;
+    margin: 8px 16px;
+    color: #1B531A;
+    font-family: "Manrope";
+    font-weight: 600;
+}
+
+.wordItem {
+    font-family: "Manrope";
+    font-weight: 700;
+    color: #1B531A;
+    font-size: 18px;
+}
+
+.sack {
+    opacity: 0;
+    z-index: -1;
+    border: 4px solid #40513B;
+    border-radius: 8px;
+    padding: 20px 24px;
+    position: absolute;
+    bottom: 10%;
+    left: 10%;
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+    width: 400px;
+    background-color: #EDF1D6;
+    transition: opacity 0.5s;
+}
+
+.sackLetters {
+
+    display: flex;
+    flex-wrap: wrap;
+    overflow-wrap: break-words;
+    column-gap: 8px;
+    row-gap: 0px;
+    height: 50%;
+    width: 100%;
+}
+
+.letterPlusNumber {}
+
+.letterInSack {
+    font-family: "Manrope";
+    font-weight: 700;
+    font-size: 24px;
+    color: #1B531A;
+}
+
+.numberForLetterInSack {
+    color: #1B531A;
+    opacity: 0.5;
+    font-family: "Manrope";
+    font-weight: 500;
+    font-size: 16px;
+    margin-left: 4px;
+}
+
+.sackButton {
+    border: none;
+    height: 40px;
+    font-family: "Manrope";
+    font-size: 20px;
+    border-radius: 8px;
+    color: #40513B;
+    font-weight: 600;
+    background-color: #ABE5A9;
+    box-shadow: -4px 4px 0px 2px #1B531A;
+    transition: 0.2s;
+    transition-timing-function: ease-out;
+    opacity: 0.5;
+}
+
+.sackButton:active {
+    transform: scale(1.05);
+    transition: transform 0.05s;
+    transition-timing-function: ease-in;
+}
+
+.sackCross {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 20px;
+    margin: 12px;
+    filter: invert(24%) sepia(24%) saturate(1200%) hue-rotate(70deg) brightness(101%) contrast(98%);
+    transition: 0.05s;
+    transition-timing-function: ease-out;
+}
+
+.sackCross:hover {
+    transform: scale(1.1);
+    transition: transform 0.05s;
+    transition-timing-function: ease-in;
+}
+
+.sackLettersForChange {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 100%;
+}
+
+.tileForChange {
+    cursor: pointer;
+    opacity: 0.5;
+    transition: 0.2s;
+}
+
+.listOfWords {
+    padding-left: 8px;
+    list-style-type: none;
+    overflow: hidden;
+    overflow-y: scroll;
+    scrollbar-color: #1B531A;
+    margin: 8px;
+}
+
+.listOfWords::-webkit-scrollbar {
+    width: 10px;
+}
+
+.listOfWords::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.listOfWords::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background-color: #1B531A;
+
+}

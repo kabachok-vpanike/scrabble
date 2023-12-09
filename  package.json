@@ -1,0 +1,7 @@
+{
+  "name": "scrabble",
+  "version": "0.0.1",
+  "description": "scrabble game application",
+  "type": "commonjs",
+  "dependencies": {}
+}
