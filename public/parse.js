@@ -1,7 +1,8 @@
 const { parse } = require('csv-parse');
+const path = require('path');
 const fs = require('fs');
 
-const fileName = '/home/lev/scrabble/public/nouns.csv';
+const fileName = path.join(__dirname, '/nouns.csv');
 
 let records = [];
 // Initialize the parser

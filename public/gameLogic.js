@@ -1,4 +1,4 @@
-const checkIfWordsExists = require('/home/lev/scrabble/public/parse.js')
+const checkIfWordsExists = require('./parse.js')
 
 class GameCell {
 
