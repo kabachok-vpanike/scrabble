@@ -147,6 +147,8 @@ let Interval = 1000;
 let Expected = Date.now() + Interval;
 let CurrentUserID;
 
+let PlayerName;
+
 function step() {
     let dt = Date.now() - Expected; // the drift (positive for overshooting)
     if (dt > Interval) {
@@ -428,6 +430,7 @@ function sackButtonHandler() {
         //  drawLettersContainedInSack();
         socket.emit('drawLettersContainedInSackForAll');
     });
+    socket.emit('skip button');
 }
 
 function createTile(letter, id) {
@@ -491,12 +494,65 @@ function addPlayer(name, score, time) {
     users.appendChild(createPlayerCard(name, score, time));
 }
 
+function getPromiseFromEvent(item, event) {
+    return new Promise((resolve) => {
+        const listener = () => {
+            item.removeEventListener(event, listener);
+            resolve();
+        }
+        item.addEventListener(event, listener);
+    })
+}
+
+function createNameInputForm(id) {
+    let background = document.createElement('div');
+    background.id = id;
+    background.classList.add('nameInputForm');
+    let inputField = document.createElement('input');
+    inputField.placeholder = "Меня зовут..";
+    inputField.id = 'nameInputField';
+    inputField.classList.add('nameInputField');
+    inputField.autofocus = true;
+    let button = document.createElement('button');
+    button.classList.add('nameInputButton')
+    button.id = 'nameInputButton';
+    button.textContent = "Присоединиться";
+    background.append(inputField);
+    background.append(button);
+    inputField.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            button.click();
+        }
+    });
+    return background;
+}
+
+function getNameFromForm() {
+    return document.getElementById('nameInputField').value;
+}
+
+function handleNameSubmit() {
+    let name = getNameFromForm();
+    if (name.toString().length === 0) {
+        alert('Input your non-empty name');
+    }
+    else {
+        PlayerName = name;
+    }
+}
+
+function myPrompt() {
+    while (PlayerName === undefined) { };
+    return PlayerName;
+}
+
 function updatePlayersList(players) {
     //  socket.emit('getPlayersList', undefined, function (players) {
     let users = document.getElementById('rightBox');
     users.innerHTML = '';
     for (let player of players) {
-        users.appendChild(createPlayerCard(player.name + player.userID, player.score, player.time, player.userID));
+        users.appendChild(createPlayerCard(player.name, player.score, player.time, player.userID));
     }
     //});
 }
@@ -572,7 +628,6 @@ function updateWordPanel() {
             wordPanel.appendChild(listElement);
         }
     });
-
 }
 
 function skipButtonHandler() {
@@ -619,19 +674,35 @@ letters.classList.add('letters');
 bottomBar.classList.add('bottomBar');
 backgroundDiv.classList.add('background');
 
+let sackLettersForChange = document.getElementById('sackLettersForChange');
+
+
+/*for (let i = 0; i < LettersInHand; i++) {
+   
+}*/
+
+
 testArray = ['М', 'И', 'Н', 'А', 'М', 'И', 'Г']
 for (let i = 0; i < LettersInHand; i++) {
     // let randomLetter = randomSackLetter();
-    /*  socket.emit('randomSackLetter', undefined, function (randomLetter) {
-          let tile = createTile(randomLetter, `tile${i}`)
-          letters.appendChild(tile);
-      });*/
+    socket.emit('randomSackLetter', undefined, function (randomLetter) {
+        let tile = createTile(randomLetter, `tile${i}`)
+        letters.appendChild(tile);
 
-    let randomLetter = testArray[i];
+        let tileInSack = document.getElementById(`tile${i}`).cloneNode(true);
+        tileInSack.id = `tileSack${i}`;
+        tileInSack.draggable = false;
+        tileInSack.classList.add('tileForChange');
+        tileInSack.addEventListener('click', handleLetterInSackClick);
+        sackLettersForChange.appendChild(tileInSack);
+    });
+
+    /*let randomLetter = testArray[i];
     // lettersInSack[randomLetter]--;
     let tile = createTile(randomLetter, `tile${i}`)
-    letters.appendChild(tile);
+    letters.appendChild(tile);*/
 }
+
 
 for (let i = 0; i < 15; i++) {
     for (let j = 0; j < 15; j++) {
@@ -741,23 +812,13 @@ sackButton.style.pointerEvents = 'none';
 // const sackButtonHandler = () => { sack.style.opacity = 0.5; }
 sackButton.addEventListener("click", sackButtonHandler);
 
-let sackLettersForChange = document.getElementById('sackLettersForChange');
-
-
-for (let i = 0; i < LettersInHand; i++) {
-    let tileInSack = document.getElementById(`tile${i}`).cloneNode(true);
-    tileInSack.id = `tileSack${i}`;
-    tileInSack.draggable = false;
-    tileInSack.classList.add('tileForChange');
-    sackLettersForChange.appendChild(tileInSack);
-}
-
+/*
 for (let i = 0; i < LettersInHand; i++) {
     let tileInSack = document.getElementById(`tileSack${i}`);
     // console.log(tileInSack);
-    tileInSack.addEventListener('click', handleLetterInSackClick);
+   
 }
-
+*/
 //document.body.appendChild(cell);
 
 // var gameLogic = new GameLogic(15, mapPreset, 2, lettersInSack, lettersToScore);
@@ -811,14 +872,21 @@ socket.on('updateWordPanel', function () {
     updateWordPanel();
 });
 
-socket.on('authorize', function (callback) {
-    let username = prompt("What's your name?");
+socket.on('authorize', async function (callback) {
+    //  let username = prompt("What's your name?");
+    let form = createNameInputForm("inputform");
+    document.body.appendChild(form);
+    let button = document.getElementById('nameInputButton');
+    await getPromiseFromEvent(button, "click");
+    let username = getNameFromForm();
+    //  form.style.backgroundColor = 'black';
+    //document.getElementById("inputform").hidden = true;
+    document.getElementById("inputform").remove();
     callback(username);
 });
 
 socket.on('updatePlayersList', function (users) {
     console.log(users);
-    // addPlayer(users, 0, '20:00')
     updatePlayersList(users);
 });
 

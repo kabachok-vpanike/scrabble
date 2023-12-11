@@ -524,5 +524,60 @@ html {
 .listOfWords::-webkit-scrollbar-thumb {
     border-radius: 20px;
     background-color: #1B531A;
+}
+
+.nameInputForm {
+
+    justify-content: space-around;
+    background-color: #EDF1D6;
+    border: 4px solid #1B531A;
+    border-radius: 10px;
+    padding: 12px 28px;
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+    height: 140px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.nameInputButton {
+    height: 30%;
+    border: none;
+    user-select: none;
+    font-family: "Manrope";
+    font-weight: 600;
+    background-color: #40513B;
+    color: #ABE5A9;
+    text-align: center;
+    font-size: 22px;
+    border-radius: 8px;
+    box-shadow: -6px 6px 0px 0px #10310f;
+    transition: 0.2s;
+    transition-timing-function: ease-out;
+}
+
+.nameInputButton:active {
+    transform: scale(1.1);
+    transition: 0.05s;
+    transition-timing-function: ease-in;
+}
+
+.nameInputField {
+    color: #21542A;
+    height: 30%;
+    border: none;
+    font-family: "Manrope";
+    font-weight: 800;
+    text-align: center;
+    font-size: 22px;
+    border-radius: 8px;
+}
+
+.nameInputField:focus {
+    border: 2px solid #21542A;
 
 }
